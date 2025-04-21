@@ -104,7 +104,11 @@
 	      1000:{
 	        items:1
 	      }
-	    }
+	    },
+		touchDrag: true,
+		mouseDrag: false,
+		pullDrag: false,
+		freeDrag: false,
 		});
 	};
 	carousel();
