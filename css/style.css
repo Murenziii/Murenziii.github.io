@@ -8699,6 +8699,23 @@ h1, h2, h3, h4, h5,
 .bg-primary {
   background: #ffbd39; }
 
+  @media (max-width: 767.98px) {
+  .owl-carousel.home-slider {
+    height: auto !important;
+    min-height: 100vh;
+    touch-action: pan-y !important;
+  }
+  
+  .owl-carousel.home-slider .slider-item {
+    height: auto !important;
+    min-height: 100vh;
+  }
+  
+  .owl-carousel {
+    overflow: visible !important;
+  }
+}
+
 .btn {
   cursor: pointer;
   -webkit-border-radius: 40px;
