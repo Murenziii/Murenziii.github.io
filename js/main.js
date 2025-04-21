@@ -53,14 +53,34 @@
 				$(this).removeClass('active');
 			} else {
 				$(this).addClass('active');	
-			}
-
-			
-			
+			}	
 		});
 
 	};
 	burgerMenu();
+
+
+	// Collapse navbar when a nav-item is clicked
+    $('.navbar-nav li.nav-item a').on('click', function() {
+        // Check if navbar is expanded (mobile view)
+        if ($('.navbar-toggler').is(':visible')) {
+            // Collapse the navbar
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+    
+    // Optional: Smooth scrolling for anchor links
+    $('.navbar-nav li.nav-item a').on('click', function(e) {
+        if (this.hash !== "") {
+            e.preventDefault();
+            const hash = this.hash;
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function() {
+                window.location.hash = hash;
+            });
+        }
+    });
 
 
 	var onePageClick = function() {
