@@ -286,30 +286,234 @@
 	</nav>
 
 	<section id="home-section" class="hero">
+		<style>
+			/* =========================
+		   Advanced Mobile Hero UX
+		   - Real image (no text overlap)
+		   - Gradient scrim + glass card
+		   - Safer typography + spacing
+		   - Better button layout
+		   ========================= */
+
+			/* Ensure slider items behave well on small screens */
+			#home-section .slider-item {
+				position: relative;
+				overflow: hidden;
+			}
+
+			@media (max-width: 767.98px) {
+
+				/* Remove split layout pressure on mobile */
+				#home-section .slider-text {
+					align-items: stretch !important;
+					padding: 14px 0 18px;
+				}
+
+				/* Hide background-image column on mobile */
+				#home-section .one-third.js-fullheight {
+					display: none !important;
+				}
+
+				/* Mobile image as a "hero media" block */
+				#home-section .hero-mobile-media {
+					position: relative;
+					width: 100%;
+					margin: 0 15px 14px;
+					border-radius: 18px;
+					overflow: hidden;
+					transform: translateZ(0);
+					box-shadow:
+						0 18px 45px rgba(0, 0, 0, 0.35),
+						0 2px 10px rgba(0, 0, 0, 0.18);
+				}
+
+				#home-section .hero-mobile-media img {
+					width: 100%;
+					height: 54vh;
+					min-height: 320px;
+					max-height: 520px;
+					object-fit: cover;
+					object-position: center;
+					display: block;
+					filter: saturate(1.05) contrast(1.05);
+				}
+
+				/* Gradient scrim to improve readability and polish */
+				#home-section .hero-mobile-media::after {
+					content: "";
+					position: absolute;
+					inset: 0;
+					background:
+						linear-gradient(180deg,
+							rgba(0, 0, 0, 0.10) 0%,
+							rgba(0, 0, 0, 0.18) 35%,
+							rgba(0, 0, 0, 0.78) 100%);
+					pointer-events: none;
+				}
+
+				/* Optional subtle highlight rim */
+				#home-section .hero-mobile-media::before {
+					content: "";
+					position: absolute;
+					inset: 0;
+					border: 1px solid rgba(255, 255, 255, 0.10);
+					border-radius: 18px;
+					pointer-events: none;
+				}
+
+				/* Copy container */
+				#home-section .hero-copy {
+					width: 100% !important;
+					padding: 0 15px;
+				}
+
+				/* Glass card with better hierarchy */
+				#home-section .hero-copy .text {
+					position: relative;
+					background: rgba(12, 12, 12, 0.62);
+					backdrop-filter: blur(12px);
+					-webkit-backdrop-filter: blur(12px);
+					border: 1px solid rgba(255, 255, 255, 0.12);
+					border-radius: 18px;
+					padding: 18px 16px;
+					box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+				}
+
+				/* A small accent line for "advanced" look */
+				#home-section .hero-copy .text::before {
+					content: "";
+					position: absolute;
+					left: 16px;
+					top: 14px;
+					width: 44px;
+					height: 3px;
+					border-radius: 99px;
+					background: rgba(255, 255, 255, 0.35);
+				}
+
+				#home-section .hero-copy .subheading {
+					display: inline-block;
+					margin-top: 10px;
+					margin-bottom: 10px;
+					padding: 7px 10px;
+					border-radius: 999px;
+					background: rgba(255, 255, 255, 0.10);
+					border: 1px solid rgba(255, 255, 255, 0.10);
+					letter-spacing: 0.3px;
+					font-weight: 600;
+					color: #fff;
+				}
+
+				#home-section .hero-copy h1 {
+					color: #fff;
+					line-height: 1.08;
+					letter-spacing: -0.4px;
+					margin-bottom: 10px !important;
+					font-size: clamp(1.75rem, 5.2vw, 2.25rem);
+				}
+
+				#home-section .hero-copy h1 span {
+					color: #fff;
+					text-decoration: underline;
+					text-decoration-thickness: 2px;
+					text-underline-offset: 6px;
+					text-decoration-color: rgba(255, 255, 255, 0.35);
+				}
+
+				#home-section .hero-copy h2 {
+					color: rgba(255, 255, 255, 0.92);
+					font-size: clamp(1.02rem, 3.6vw, 1.22rem);
+					line-height: 1.25;
+					margin-bottom: 10px !important;
+				}
+
+				#home-section .hero-copy p {
+					color: rgba(255, 255, 255, 0.88);
+					line-height: 1.55;
+					margin-bottom: 14px !important;
+				}
+
+				/* Buttons: grid layout, better tap targets */
+				#home-section .hero-actions {
+					display: grid;
+					grid-template-columns: 1fr;
+					gap: 10px;
+					margin-top: 10px;
+				}
+
+				#home-section .hero-actions .btn {
+					width: 100%;
+					border-radius: 14px;
+					padding: 14px 16px !important;
+					font-weight: 700;
+					letter-spacing: 0.2px;
+					box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+					transform: translateZ(0);
+				}
+
+				/* Improve outline button contrast on dark glass */
+				#home-section .hero-actions .btn.btn-white.btn-outline-white {
+					border-width: 2px;
+					background: rgba(255, 255, 255, 0.06);
+				}
+
+				/* Small screens: keep spacing tight */
+				#home-section .mb-4 {
+					margin-bottom: 0.9rem !important;
+				}
+			}
+
+			/* Slightly wider phones: two-column buttons */
+			@media (min-width: 576px) and (max-width: 767.98px) {
+				#home-section .hero-actions {
+					grid-template-columns: 1fr 1fr;
+				}
+			}
+
+			/* Respect reduced motion users */
+			@media (prefers-reduced-motion: reduce) {
+				#home-section * {
+					scroll-behavior: auto !important;
+					transition: none !important;
+					animation: none !important;
+				}
+			}
+		</style>
+
 		<div class="home-slider owl-carousel">
 			<div class="slider-item">
 				<div class="overlay"></div>
 				<div class="container">
 					<div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end"
 						data-scrollax-parent="true">
-						<div class="one-third js-fullheight order-md-last img"
+
+						<!-- Desktop/Tablet background image -->
+						<div class="one-third js-fullheight order-md-last img d-none d-md-block"
 							style="background-image:url(./images/me/about-me.png);">
 							<div class="overlay"></div>
 						</div>
-						<div class="one-forth d-flex align-items-center ftco-animate"
+
+						<!-- Mobile media block -->
+						<div class="d-md-none hero-mobile-media">
+							<img src="./images/me/about-me.png" alt="MURENZI Norbert" loading="lazy">
+						</div>
+
+						<div class="one-forth d-flex align-items-center ftco-animate hero-copy"
 							data-scrollax=" properties: { translateY: '70%' }">
 							<div class="text">
 								<span class="subheading">The Person Behind the Systems</span>
 								<h1 class="mb-4 mt-3">I'm <span>MURENZI Norbert</span></h1>
 								<h2 class="mb-4">Co-Founder of ATAS</h2>
-								<p class="mb-4" style="color: white;">Building Contextual Intelligence for Rwanda and
-									Africa</p>
-								<p><a href="#contact-section" class="btn btn-primary py-3 px-4">Let's Connect</a>
+								<p class="mb-4" style="color: white;">Building Contextual Intelligence for Rwanda and Africa</p>
+
+								<div class="hero-actions">
+									<a href="#contact-section" class="btn btn-primary py-3 px-4">Let's Connect</a>
 									<a href="#projects-section" class="btn btn-white btn-outline-white py-3 px-4">My
 										Projects</a>
-								</p>
+								</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -319,29 +523,40 @@
 				<div class="container">
 					<div class="row d-flex no-gutters slider-text align-items-end justify-content-end"
 						data-scrollax-parent="true">
-						<div class="one-third js-fullheight order-md-last img"
+
+						<!-- Desktop/Tablet background image -->
+						<div class="one-third js-fullheight order-md-last img d-none d-md-block"
 							style="background-image:url(./images/me/about-me2.png);">
 							<div class="overlay"></div>
 						</div>
-						<div class="one-forth d-flex align-items-center ftco-animate"
+
+						<!-- Mobile media block -->
+						<div class="d-md-none hero-mobile-media">
+							<img src="./images/me/about-me2.png" alt="Building Africa's Future" loading="lazy">
+						</div>
+
+						<div class="one-forth d-flex align-items-center ftco-animate hero-copy"
 							data-scrollax=" properties: { translateY: '70%' }">
 							<div class="text">
 								<span class="subheading">Building Africa's Future</span>
 								<h1 class="mb-4 mt-3">Technology that <span>Belongs Here</span></h1>
 								<h2 class="mb-4">Not imported tools. Not borrowed assumptions.</h2>
-								<p class="mb-4" style="color: white;">We are not catching up. We are building forward.
-								</p>
-								<p><a href="#projects-section" class="btn btn-primary py-3 px-4">Explore Work</a>
+								<p class="mb-4" style="color: white;">We are not catching up. We are building forward.</p>
+
+								<div class="hero-actions">
+									<a href="#projects-section" class="btn btn-primary py-3 px-4">Explore Work</a>
 									<a href="#articles-section" class="btn btn-white btn-outline-white py-3 px-4">Read
 										Articles</a>
-								</p>
+								</div>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
+
 
 	<section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
 		<div class="container">
